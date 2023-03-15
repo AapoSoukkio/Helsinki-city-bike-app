@@ -2,7 +2,6 @@
 {
     public class MayJourney
     {
-        public int Id { get; set; }
         public string Departure { get; set; }
         public string Return { get; set; }
         public int DepartureStationId { get; set; }

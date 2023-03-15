@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Solita.HelsinkiBikeApp.Server.Data;
+using Solita.HelsinkiBikeApp.Server.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,14 @@ builder.Services.AddDbContext<BikeContext>(options =>
             options.UseSqlite(builder.Configuration.GetConnectionString("BikeContext")));
 
 var app = builder.Build();
+
+// seed the db
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 
 //NO need for this at least yet

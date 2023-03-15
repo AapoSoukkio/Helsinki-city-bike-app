@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solita.HelsinkiBikeApp.Server", "Server\Solita.HelsinkiBikeApp.Server.csproj", "{312389BE-6805-4CE0-9FBA-267077076EC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solita.HelsinkiBikeApp.Server", "Server\Solita.HelsinkiBikeApp.Server.csproj", "{312389BE-6805-4CE0-9FBA-267077076EC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solita.HelsinkiBikeApp.Client", "Client\Solita.HelsinkiBikeApp.Client.csproj", "{CE61C67B-57A1-4D37-ADD8-D4D54337E313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solita.HelsinkiBikeApp.Client", "Client\Solita.HelsinkiBikeApp.Client.csproj", "{CE61C67B-57A1-4D37-ADD8-D4D54337E313}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solita.HelsinkiBikeApp.Shared", "Shared\Solita.HelsinkiBikeApp.Shared.csproj", "{35606025-2EF8-42E9-ADA2-B5C86A9273FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solita.HelsinkiBikeApp.Shared", "Shared\Solita.HelsinkiBikeApp.Shared.csproj", "{35606025-2EF8-42E9-ADA2-B5C86A9273FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
