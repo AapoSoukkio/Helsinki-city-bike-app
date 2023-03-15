@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solita.HelsinkiBikeApp.Server", "Server\Solita.HelsinkiBikeApp.Server.csproj", "{312389BE-6805-4CE0-9FBA-267077076EC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solita.HelsinkiBikeApp.Client", "Client\Solita.HelsinkiBikeApp.Client.csproj", "{CE61C67B-57A1-4D37-ADD8-D4D54337E313}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solita.HelsinkiBikeApp.Shared", "Shared\Solita.HelsinkiBikeApp.Shared.csproj", "{35606025-2EF8-42E9-ADA2-B5C86A9273FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{312389BE-6805-4CE0-9FBA-267077076EC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{312389BE-6805-4CE0-9FBA-267077076EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{312389BE-6805-4CE0-9FBA-267077076EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{312389BE-6805-4CE0-9FBA-267077076EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE61C67B-57A1-4D37-ADD8-D4D54337E313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE61C67B-57A1-4D37-ADD8-D4D54337E313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE61C67B-57A1-4D37-ADD8-D4D54337E313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE61C67B-57A1-4D37-ADD8-D4D54337E313}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35606025-2EF8-42E9-ADA2-B5C86A9273FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35606025-2EF8-42E9-ADA2-B5C86A9273FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35606025-2EF8-42E9-ADA2-B5C86A9273FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35606025-2EF8-42E9-ADA2-B5C86A9273FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BD41B9F-3A78-413D-BE98-DA516466926F}
+	EndGlobalSection
+EndGlobal
