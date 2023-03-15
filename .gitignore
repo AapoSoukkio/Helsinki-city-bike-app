@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Added 15.3.2023
+*.db
+
 # User-specific files
 *.rsuser
 *.suo
