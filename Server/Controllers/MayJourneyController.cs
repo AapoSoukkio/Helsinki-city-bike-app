@@ -25,11 +25,16 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
             return await _db.MayJourneys.ToListAsync();
         }
 
-        [HttpGet("gethundred")]
-        public async Task<IEnumerable<MayJourney>> GetHundred()
+        [HttpGet("getjourneys")]
+        public async Task<ActionResult<IEnumerable<MayJourney>>> GetMayJourneys(int pageNumber = 1, int pageSize = 100)
         {
-            // Returns the first 100 rows from MayJourney table
-            return await _db.MayJourneys.Take(100).ToListAsync();
+            var result = await _db.MayJourneys
+                .Where(j => j.Departure != null && j.Return != null && j.DepartureStationName != null && j.ReturnStationName != null && j.CoveredDistance != null && j.Duration != null)
+                /*.OrderBy(j => j.Departure)*/ //Note to myself: this is making the query much slower --> because basicly we are taking last 100 rows from the table
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+            return Ok(result);
         }
     }
 }
