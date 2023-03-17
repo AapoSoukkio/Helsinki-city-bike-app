@@ -28,21 +28,26 @@
         <th>Return</th>
         <th>Departure Station Name</th>
         <th>Return Station Name</th>
-        <th>Covered Distance</th>
-        <th>Duration</th>
+        <th>Covered Distance (km)</th>
+        <th>Duration (min)</th>
     </tr>
     @if (mayJourneys != null)
     {
         @foreach (var journey in mayJourneys.Where(j => j != null))
         {
-            
+            // Convert meters to kilometers
+            decimal coveredDistanceKm = (decimal)journey.CoveredDistance / 1000;
+
+            // Convert seconds to minutes
+            decimal durationMin = (decimal)journey.Duration / 60;
+
             <tr>
                 <td>@journey.Departure</td>
                 <td>@journey.Return</td>
                 <td>@journey.DepartureStationName</td>
                 <td>@journey.ReturnStationName</td>
-                <td>@journey.CoveredDistance</td>
-                <td>@journey.Duration</td>
+                <td>@String.Format("{0:N1}", coveredDistanceKm)</td>
+                <td>@String.Format("{0:N1}", durationMin)</td>
             </tr>
         }
     }
