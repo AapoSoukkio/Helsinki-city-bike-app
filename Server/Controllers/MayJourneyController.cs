@@ -26,15 +26,28 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
         }
 
         [HttpGet("getjourneys")]
-        public async Task<ActionResult<IEnumerable<MayJourney>>> GetMayJourneys(int pageNumber = 1, int pageSize = 100)
+        public async Task<ActionResult<IEnumerable<MayJourney>>> GetMayJourneys(DateTime? departureDate = null, int pageNumber = 1, int pageSize = 100)
         {
+            // Default departure date if not provided by user
+            if (!departureDate.HasValue)
+            {
+                departureDate = new DateTime(2021, 5, 31);
+            }
+
+            var departureDateString = departureDate.Value.ToString("yyyy-MM-dd");
+
             var result = await _db.MayJourneys
-                .Where(j => j.Departure != null && j.Return != null && j.DepartureStationName != null && j.ReturnStationName != null && j.CoveredDistance != null && j.Duration != null)
-                /*.OrderBy(j => j.Departure)*/ //Note to myself: this is making the query much slower --> because basicly we are taking last 100 rows from the table
+                .Where(j => j.Departure != null && j.Return != null
+                            && j.DepartureStationName != null && j.ReturnStationName != null
+                            && j.CoveredDistance != null && j.Duration != null
+                            && j.Departure.Contains(departureDateString))
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
+                .Distinct()
                 .ToListAsync();
+
             return Ok(result);
         }
+
     }
 }

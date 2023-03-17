@@ -5,6 +5,11 @@
 
 <h1>May Journeys</h1>
 
+<label for="date">Search by date</label>
+<input type="date" id="date" name="date" min="2021-05-01" max="2021-05-31" @bind-value="departureDate" />
+
+<button type="button" class="btn btn-primary" @onclick="Search">Search</button>
+
 <div class="pagination">
     <button class="btn btn-primary" disabled="@disablePrevious" @onclick="() => LoadPage(currentPage - 1, previous)">
         <span class="btn-text">Previous</span> 
@@ -50,10 +55,14 @@
     private int pageSize = 100;
     private bool disablePrevious = true;
     private int totalPages;
+    private DateTime? departureDate;
+    private string debartureStation;
 
     protected override async Task OnInitializedAsync()
+
     {
         await LoadPage(currentPage, next);
+        departureDate = new DateTime(2021, 5, 31);
     }
 
     private async Task LoadPage(int page, string direction)
@@ -73,7 +82,14 @@
             currentPage = 1;
         }
 
-        var response = await Http.GetFromJsonAsync<IEnumerable<MayJourney>>($"mayjourney/getjourneys?pageNumber={page}&pageSize={pageSize}");
+        var url = $"mayjourney/getjourneys?pageNumber={page}&pageSize={pageSize}";
+
+        if (departureDate != null)
+        {
+            url += $"&departureDate={departureDate.Value.ToString("yyyy-MM-dd")}";
+        }
+
+        var response = await Http.GetFromJsonAsync<IEnumerable<MayJourney>>(url);
         mayJourneys = response?.ToArray();
 
         if (mayJourneys != null && mayJourneys.Any())
@@ -86,4 +102,10 @@
             totalPages = 0;
         }
     }
+
+    private async Task Search()
+{
+    currentPage = 1;
+    await LoadPage(currentPage, next);
+}
 }
