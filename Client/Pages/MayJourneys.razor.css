@@ -29,13 +29,23 @@ th {
 
 .btn-text {
     display: inline-block;
-    font-size: 1.2rem; /* adjust the font size to your liking */
+    font-size: 1.2rem; 
     margin-right: 5px;
 }
 
 .small-text {
     display: inline-block;
-    font-size: 0.6rem; /* adjust the font size to your liking */
+    font-size: 0.6rem; 
 }
+
+.search {
+    justify-content: normal;
+    margin-bottom: 20px;
+}
+
+    .search button {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
 
 
