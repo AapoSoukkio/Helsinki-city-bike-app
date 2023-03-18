@@ -35,7 +35,7 @@
             <tr>
                 <td>@station.Name</td>
                 <td>@station.Adress</td>
-                <td><a href="###">Details</a></td>
+                <td>Details Link</td>
             </tr>
         }
     }
@@ -73,7 +73,7 @@
             currentPage = 1;
         }
 
-        var url = $"bikestation/getstations?pageNumber={page}&pageSize={pageSize}";
+        var url = $"bikestation/stations?pageNumber={page}&pageSize={pageSize}";
 
 
         var response = await Http.GetFromJsonAsync<IEnumerable<BikeStation>>(url);
