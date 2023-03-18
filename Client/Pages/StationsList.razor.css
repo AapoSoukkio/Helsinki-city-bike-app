@@ -1,0 +1,49 @@
+﻿table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+    width: calc(100% / 6);
+}
+
+th {
+    background-color: #dddddd;
+    width: calc(100% / 6);
+}
+
+.pagination {
+    display: flex;
+    justify-content: normal;
+    margin-bottom: 20px;
+}
+
+    .pagination button {
+        margin-right: 10px;
+    }
+
+
+.btn-text {
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+
+.small-text {
+    display: inline-block;
+    font-size: 0.6rem;
+}
+
+.search {
+    justify-content: normal;
+    margin-bottom: 20px;
+}
+
+    .search button {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
