@@ -1,0 +1,98 @@
+﻿@page "/stations"
+@using Solita.HelsinkiBikeApp.Shared
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@inject HttpClient Http
+
+<h1>Bike stations</h1>
+
+@*<div class="search">
+    <label for="date">Search by date</label>
+    <input type="date" id="date" name="date" min="2021-05-01" max="2021-05-31" @bind-value="departureDate" />   
+    <button type="button" class="btn btn-primary" @onclick="Search">Search</button>
+</div>*@
+
+<div class="pagination">
+    <button class="btn btn-primary" disabled="@disablePrevious" @onclick="() => LoadPage(currentPage - 1, previous)">
+        <span class="btn-text">Previous</span> 
+        <span class="small-text">100 rows</span>
+    </button>
+    <button class="btn btn-primary" @onclick="() => LoadPage(currentPage + 1, next)">
+        <span class="btn-text">Next</span> 
+        <span class="small-text">100 rows</span>
+    </button>
+</div>
+
+<Table>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Details</th>
+    </tr>
+    @if (bikeStations != null)
+    {
+        @foreach (var station in bikeStations.Where(j => j != null)) //Note what is happening here
+        {
+            <tr>
+                <td>@station.Name</td>
+                <td>@station.Adress</td>
+                <td><a href="###">Details</a></td>
+            </tr>
+        }
+    }
+</Table>
+
+@code {
+    private BikeStation[] bikeStations;
+    private int currentPage = 1;
+    private string next = "next";
+    private string previous = "previous";
+    private int pageSize = 100;
+    private bool disablePrevious = true;
+    private int totalPages;
+
+    protected override async Task OnInitializedAsync()
+
+    {
+        await LoadPage(currentPage, next);
+    }
+
+    private async Task LoadPage(int page, string direction)
+    {
+        if (page > 1 && direction == "next")
+        {
+            currentPage++;
+            disablePrevious = false;
+        }
+        else if (page > 1 && direction == "previous")
+        {
+            currentPage = currentPage - 1;
+        }
+        else
+        {
+            disablePrevious = true;
+            currentPage = 1;
+        }
+
+        var url = $"bikestation/getstations?pageNumber={page}&pageSize={pageSize}";
+
+
+        var response = await Http.GetFromJsonAsync<IEnumerable<BikeStation>>(url);
+        bikeStations = response?.ToArray();
+
+        if (bikeStations != null && bikeStations.Any())
+        {
+            var totalRecords = 800000; //TODO this is just estimate number of the rows on database --> Get the real number from backend
+            totalPages = (int)Math.Ceiling((decimal)totalRecords / pageSize);
+        }
+        else
+        {
+            totalPages = 0;
+        }
+    }
+
+        private async Task Search()
+    {
+        currentPage = 1;
+        await LoadPage(currentPage, next);
+    }
+}
