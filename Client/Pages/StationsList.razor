@@ -5,11 +5,11 @@
 
 <h1>Bike stations</h1>
 
-@*<div class="search">
-    <label for="date">Search by date</label>
-    <input type="date" id="date" name="date" min="2021-05-01" max="2021-05-31" @bind-value="departureDate" />   
+<div class="search">
+    <label for="date">Search by station name</label>
+    <input type="text" id="station" name="station" @bind-value="stationName" />   
     <button type="button" class="btn btn-primary" @onclick="Search">Search</button>
-</div>*@
+</div>
 
 <div class="pagination">
     <button class="btn btn-primary" disabled="@disablePrevious" @onclick="() => LoadPage(currentPage - 1, previous)">
@@ -41,14 +41,20 @@
     }
 </Table>
 
+@if (bikeStations != null && bikeStations.Length < 1)
+    {
+        <h2>No matches to your search</h2>
+    }
+
 @code {
-    private BikeStation[] bikeStations;
+    private BikeStation[]? bikeStations;
     private int currentPage = 1;
     private string next = "next";
     private string previous = "previous";
     private int pageSize = 100;
     private bool disablePrevious = true;
     private int totalPages;
+    private string? stationName;
 
     protected override async Task OnInitializedAsync()
 
@@ -74,6 +80,11 @@
         }
 
         var url = $"bikestation/stations?pageNumber={page}&pageSize={pageSize}";
+
+        if (stationName != null)
+        {
+            url += $"&stationName={stationName}";
+        }
 
 
         var response = await Http.GetFromJsonAsync<IEnumerable<BikeStation>>(url);
