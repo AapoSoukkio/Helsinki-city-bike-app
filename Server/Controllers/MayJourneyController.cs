@@ -40,6 +40,7 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
                 .Where(j => j.Departure != null && j.Return != null
                             && j.DepartureStationName != null && j.ReturnStationName != null
                             && j.CoveredDistance != null && j.Duration != null
+                            && j.CoveredDistance >= 10 && j.Duration >= 10
                             && j.Departure.Contains(departureDateString))
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
