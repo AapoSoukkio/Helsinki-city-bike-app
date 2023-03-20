@@ -1,6 +1,6 @@
 ﻿namespace Solita.HelsinkiBikeApp.Shared
 {
-    public class Summer21Journeys
+    public class Summer21Journey
     {
         public string? Departure { get; set; }
         public string? Return { get; set; }

@@ -19,7 +19,7 @@ namespace Solita.HelsinkiBikeApp.Server.Models
                 context.Database.EnsureCreated();
 
 
-                if (context.MayJourneys.Any())
+                if (context.Summer21Journeys.Any())
                 {
                     return;   // DB has been seeded
                               // To re-seed the db: delete the existing *.db file and let the app create a new one
