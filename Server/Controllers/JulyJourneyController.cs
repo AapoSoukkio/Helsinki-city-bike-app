@@ -30,7 +30,7 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
             // Default departure date if not provided by user
             if (!departureDate.HasValue)
             {
-                departureDate = new DateTime(2021, 5, 31);
+                departureDate = new DateTime(2021, 7, 31);
             }
 
             var departureDateString = departureDate.Value.ToString("yyyy-MM-dd");

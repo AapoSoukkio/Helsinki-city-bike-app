@@ -13,6 +13,8 @@ namespace Solita.HelsinkiBikeApp.Server.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MayJourney>().HasNoKey();
+            modelBuilder.Entity<JuneJourney>().HasNoKey();
+            modelBuilder.Entity<JulyJourney>().HasNoKey();
         }
 
         public DbSet<MayJourney> MayJourneys { get; set; }
