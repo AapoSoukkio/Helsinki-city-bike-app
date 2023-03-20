@@ -12,11 +12,11 @@
 </div>
 
 <div class="pagination">
-    <button class="btn btn-primary" disabled="@disablePrevious" @onclick="() => LoadPage(currentPage - 1, previous)">
+    <button class="btn btn-primary" disabled="@disablePrevious" @onclick="() => LoadPage(currentPage - 1, previous, departureDate)">
         <span class="btn-text">Previous</span> 
         <span class="small-text">100 rows</span>
     </button>
-    <button class="btn btn-primary" @onclick="() => LoadPage(currentPage + 1, next)">
+    <button class="btn btn-primary" @onclick="() => LoadPage(currentPage + 1, next, departureDate)">
         <span class="btn-text">Next</span> 
         <span class="small-text">100 rows</span>
     </button>
@@ -54,7 +54,7 @@
 </Table>
 
 @code {
-    private JulyJourney[]? julyJourneys;
+  private Summer21Journey[]? julyJourneys;
     private int currentPage = 1;
     private string next = "next";
     private string previous = "previous";
@@ -66,11 +66,11 @@
     protected override async Task OnInitializedAsync()
 
     {
-        await LoadPage(currentPage, next);
         departureDate = new DateTime(2021, 7, 31);
+        await LoadPage(currentPage, next, departureDate);
     }
 
-    private async Task LoadPage(int page, string direction)
+    private async Task LoadPage(int page, string direction, DateTime? departureDate)
     {
         if (page > 1 && direction == "next")
         {
@@ -87,14 +87,14 @@
             currentPage = 1;
         }
 
-        var url = $"julyjourney/getjourneys?pageNumber={page}&pageSize={pageSize}";
+        var url = $"summer21journey/getjourneys?pageNumber={page}&pageSize={pageSize}";
 
         if (departureDate != null)
         {
             url += $"&departureDate={departureDate.Value.ToString("yyyy-MM-dd")}";
         }
 
-        var response = await Http.GetFromJsonAsync<IEnumerable<JulyJourney>>(url);
+        var response = await Http.GetFromJsonAsync<IEnumerable<Summer21Journey>>(url);
         julyJourneys = response?.ToArray();
 
         if (julyJourneys != null && julyJourneys.Any())
@@ -111,6 +111,6 @@
         private async Task Search()
     {
         currentPage = 1;
-        await LoadPage(currentPage, next);
+        await LoadPage(currentPage, next, departureDate);
     }
 }
