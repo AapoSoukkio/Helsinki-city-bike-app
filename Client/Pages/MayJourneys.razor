@@ -31,9 +31,9 @@
         <th>Covered Distance (km)</th>
         <th>Duration (min)</th>
     </tr>
-    @if (summer21Journeys != null)
+    @if (mayJourneys != null)
     {
-        @foreach (var journey in summer21Journeys.Where(j => j != null))
+        @foreach (var journey in mayJourneys.Where(j => j != null))
         {
             // Convert meters to kilometers
             decimal coveredDistanceKm = (decimal)journey.CoveredDistance / 1000;
@@ -54,8 +54,7 @@
 </Table>
 
 @code {
-    //private MayJourney[]? mayJourneys;
-    private Summer21Journey[]? summer21Journeys;
+    private Summer21Journey[]? mayJourneys;
     private int currentPage = 1;
     private string next = "next";
     private string previous = "previous";
@@ -96,9 +95,9 @@
         }
 
         var response = await Http.GetFromJsonAsync<IEnumerable<Summer21Journey>>(url);
-        summer21Journeys = response?.ToArray();
+        mayJourneys = response?.ToArray();
 
-        if (summer21Journeys != null && summer21Journeys.Any())
+        if (mayJourneys != null && mayJourneys.Any())
         {
             var totalRecords = 800000; //TODO this is just estimate number of the rows on database --> Get the real number from backend
             totalPages = (int)Math.Ceiling((decimal)totalRecords / pageSize);
