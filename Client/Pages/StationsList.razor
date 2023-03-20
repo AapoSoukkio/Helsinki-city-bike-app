@@ -35,7 +35,7 @@
             <tr>
                 <td>@station.Name</td>
                 <td>@station.Adress</td>
-                <td>Details Link</td>
+                <td><a href=@($"/station/details/{station.ID}")>details</a></td>
             </tr>
         }
     }

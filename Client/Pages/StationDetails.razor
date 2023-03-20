@@ -1,0 +1,32 @@
+﻿@page "/station/details/{id:int}"
+@using Solita.HelsinkiBikeApp.Shared
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<PageTitle>Staion details</PageTitle>
+
+@if (null == bikeStation)
+{
+    <p>Loading station...</p>
+}
+else
+{
+    <span>@bikeStation.Adress</span> <span>@bikeStation.Name</span>
+    <br />
+    
+}
+
+@code {
+
+    private BikeStation? bikeStation;
+
+    [Parameter]
+    public int ID { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        var stations = await Http.GetFromJsonAsync<BikeStation[]>($"bikestation");
+        bikeStation = stations.FirstOrDefault(s => s.ID == ID);
+        //station = station.FirstOrDefault(s => s.ID == ID);
+
+    }
+}

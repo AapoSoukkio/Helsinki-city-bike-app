@@ -25,6 +25,17 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
             return await _db.BikeStations.ToListAsync();
         }
 
+        //[HttpGet("")]
+        //public async Task<IEnumerable<BikeStation>> GetStation(int id)
+        //{
+        //    //private BikeStation? bikeStation;
+        //    //Returns all data from BikeStation table
+        //    var stations = await _db.BikeStations.ToListAsync();
+        //    var station = stations.FirstOrDefault(s => s.ID == id);
+
+        //    return (IEnumerable<BikeStation>)Ok(station);
+        //}
+
         [HttpGet("stations")]
         public async Task<ActionResult<IEnumerable<BikeStation>>> GetStations(string? stationName = null, int pageNumber = 1, int pageSize = 100)
         {
