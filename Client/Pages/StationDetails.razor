@@ -19,6 +19,11 @@ else
 @code {
 
     private BikeStation? bikeStation;
+    private MayJourney? mayJourney;
+    private JuneJourney? juneJourney;
+    private JulyJourney? julyJourney;
+
+    private int? totalStarts = 0;
 
     [Parameter]
     public int ID { get; set; }
@@ -26,7 +31,22 @@ else
     {
         var stations = await Http.GetFromJsonAsync<BikeStation[]>($"bikestation");
         bikeStation = stations.FirstOrDefault(s => s.ID == ID);
+
+        if (bikeStation != null)
+        {
+            totalStarts = NumberOfJourneysStarted(bikeStation.ID);
+        }
+
         //station = station.FirstOrDefault(s => s.ID == ID);
 
+    }
+
+    private int NumberOfJourneysStarted(int id)
+    {
+        int totalStarts = 0;
+
+        totalStarts += 0; //TODO: Get the real numbers from backend as soon as endpoints are ready
+
+        return totalStarts;
     }
 }
