@@ -12,6 +12,8 @@
 else
 {
     <span>@bikeStation.Adress</span> <span>@bikeStation.Name</span>
+    <span>@totalStarts</span>
+    
     <br />
     
 }
@@ -24,6 +26,7 @@ else
     private JulyJourney? julyJourney;
 
     private int? totalStarts = 0;
+    private int? totalEnded = 0;
 
     [Parameter]
     public int ID { get; set; }
@@ -34,18 +37,60 @@ else
 
         if (bikeStation != null)
         {
-            totalStarts = NumberOfJourneysStarted(bikeStation.ID);
+            totalStarts = await NumberOfJourneysStarted(ID);
         }
 
         //station = station.FirstOrDefault(s => s.ID == ID);
 
     }
 
-    private int NumberOfJourneysStarted(int id)
+    //Get the total number of journeys started from station(id)
+    private async Task<int> NumberOfJourneysStarted(int id)
     {
+
         int totalStarts = 0;
 
-        totalStarts += 0; //TODO: Get the real numbers from backend as soon as endpoints are ready
+        //May
+        var urlMay = $"mayjourney/journeysstarted?id={id}";
+        HttpResponseMessage responseMay = await Http.GetAsync(urlMay);
+
+        if (responseMay.IsSuccessStatusCode)
+        {
+            string jsonResponseMay = await responseMay.Content.ReadAsStringAsync();
+            totalStarts += int.Parse(jsonResponseMay);
+        }
+        else
+        {
+            throw new Exception("Failed to get the number of journeys started may.");
+        }
+
+        //June
+        var urlJune = $"junejourney/journeysstarted?id={id}";
+        HttpResponseMessage responseJune = await Http.GetAsync(urlJune);
+
+        if (responseJune.IsSuccessStatusCode)
+        {
+            string jsonResponseJune = await responseJune.Content.ReadAsStringAsync();
+            totalStarts += int.Parse(jsonResponseJune);
+        }
+        else
+        {
+            throw new Exception("Failed to get the number of journeys started June.");
+        }
+
+        //July
+        var urlJuly = $"julyjourney/journeysstarted?id={id}";
+        HttpResponseMessage responseJuly = await Http.GetAsync(urlJuly);
+
+        if (responseJuly.IsSuccessStatusCode)
+        {
+            string jsonResponseJuly = await responseJuly.Content.ReadAsStringAsync();
+            totalStarts += int.Parse(jsonResponseJuly);
+        }
+        else
+        {
+            throw new Exception("Failed to get the number of journeys started July.");
+        }
 
         return totalStarts;
     }

@@ -49,5 +49,12 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("journeysstarted")]
+        public async Task<int> GetNumberOfJourneysStarted(int id)
+        {
+            //Returns the total number of journeys starting from the station 
+            return await _db.JuneJourneys.Where(j => j.DepartureStationId == id).CountAsync();
+        }
     }
 }
