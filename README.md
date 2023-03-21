@@ -82,7 +82,21 @@ internet connection while downloading the file.
 
 ## Tests
 
-Coming soon
+This project includes unit tests for the server-side code. The tests use the NUnit testing framework.
+
+### How to run the tests
+
+To run the tests, follow these steps:
+
+1. Open the solution in Visual Studio.
+
+2. Build the solution by clicking "Build Solution" in the "Build" menu.
+
+3. In the Solution Explorer, navigate to the test class you want to run. All tests can be found under Solita.HelsinkiBikeApp.Tests project
+
+4. To run all the tests in the class, press "Control + R + T" or right-click on the test class and select "Run Tests".
+
+5. The test results will appear in the Test Explorer window. You can click on a test result to see more details about the test run.
 
 
 ## Helpful Links
