@@ -17,7 +17,11 @@ else
     <br />
     <span>Total number of journeys ending at the station: @totalEnded</span>
     <br />
-    
+    <br />
+    <span>The average distance of a journey starting from the station in kilometers: @avgDistJourneysStarted</span>
+    <br />
+    <a href="@($"https://www.google.com/maps?q={bikeStation.Y},{bikeStation.X}")" target="_blank">View on Google Maps</a>
+
 }
 
 @code {
@@ -27,6 +31,7 @@ else
 
     private int? totalStarts = 0;
     private int? totalEnded = 0;
+    private double? avgDistJourneysStarted = 0;
 
     [Parameter]
     public int ID { get; set; }
@@ -39,11 +44,12 @@ else
         {
             totalStarts = await NumberOfJourneysStarted(ID);
             totalEnded = await NumberOfJourneysEnded(ID);
+            avgDistJourneysStarted = await AvgDistJourneysStarting(ID);
         }
 
     }
 
-    //Get the total number of journeys started from station(id)
+    //Get the total number of journeys started from station
     private async Task<int> NumberOfJourneysStarted(int id)
     {
         int totalStarts = 0;
@@ -67,7 +73,7 @@ else
         return totalStarts;
     }
 
-    //Get the total number of journeys ending at the station(id)
+    //Get the total number of journeys ending at the station
     private async Task<int> NumberOfJourneysEnded(int id)
     {
         int totalEnded = 0;
@@ -89,5 +95,13 @@ else
         }
 
         return totalEnded;
+    }
+
+    //Get average distance of a journey starting from the station in kilometers
+    private async Task<double> AvgDistJourneysStarting(int id)
+    {
+        var url = $"summer21journey/average_distance_starting_from_station?id={id}";
+        double averageDistance = await Http.GetFromJsonAsync<double>(url);
+        return averageDistance;
     }
 }
