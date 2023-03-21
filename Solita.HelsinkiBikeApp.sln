@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solita.HelsinkiBikeApp.Clie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solita.HelsinkiBikeApp.Shared", "Shared\Solita.HelsinkiBikeApp.Shared.csproj", "{35606025-2EF8-42E9-ADA2-B5C86A9273FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solita.HelsinkiBikeApp.Tests", "Solita.HelsinkiBikeApp.Tests\Solita.HelsinkiBikeApp.Tests.csproj", "{580A90A8-843B-48C3-A572-353CA9E55C1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{35606025-2EF8-42E9-ADA2-B5C86A9273FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35606025-2EF8-42E9-ADA2-B5C86A9273FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35606025-2EF8-42E9-ADA2-B5C86A9273FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{580A90A8-843B-48C3-A572-353CA9E55C1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{580A90A8-843B-48C3-A572-353CA9E55C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{580A90A8-843B-48C3-A572-353CA9E55C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{580A90A8-843B-48C3-A572-353CA9E55C1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
