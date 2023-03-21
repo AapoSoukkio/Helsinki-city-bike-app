@@ -82,5 +82,24 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
 
             return Ok(Math.Round(averageDistanceInKilometers, 1));
         }
+
+        [HttpGet("average_distance_ending_at_station")]
+        public async Task<ActionResult<double>> GetAverageDistanceEndingAtStation(int id)
+        {
+            var journeys = await _db.Summer21Journeys
+                                         .Where(j => j.ReturnStationId == id && j.CoveredDistance >= 10)
+                                         .ToListAsync();
+
+            if (journeys.Count == 0)
+            {
+                return NotFound();
+            }
+
+            double totalDistanceInMeters = (double)journeys.Sum(j => j.CoveredDistance);
+            double totalDistanceInKilometers = totalDistanceInMeters / 1000;
+            double averageDistanceInKilometers = totalDistanceInKilometers / journeys.Count;
+
+            return Ok(Math.Round(averageDistanceInKilometers, 1));
+        }
     }
 }
