@@ -11,66 +11,64 @@
 }
 else
 {
-    <span>@bikeStation.Adress</span> <span>@bikeStation.Name</span>
-    <br />
-    <span>Total number of journeys starting from the station: @totalStarts</span>
-    <br />
-    <span>Total number of journeys ending at the station: @totalEnded</span>
-    <br />
-    <br />
-    <span>The average distance of a journey starting from the station in kilometers: @avgDistJourneysStarted</span>
-    <br />
-    <br />
-    <span>The average distance of a journey ending at the station in kilometers: @avgDistJourneysEnded</span>
-    <br />
-    <a href="@($"https://www.google.com/maps?q={bikeStation.Y},{bikeStation.X}")" target="_blank">View on Google Maps</a>
-    <br />
-
-      <h3>Top 5 most popular return stations for journeys starting from the station</h3>
-    @if (topReturnStations == null)
-    {
-        <p>Loading top return stations...</p>
-    }
-    else if (topReturnStations.Count == 0)
-    {
-        <p>No data found for top return stations.</p>
-    }
-    else
-    {
-        <ol>
-            @foreach (var station in topReturnStations)
-            {
-                <li>@station.Name</li>
-            }
-        </ol>
-    }
-
-    <h3>Top 5 most popular departure stations for journeys ending at the station</h3>
-    @if (topDepartureStations == null)
-    {
-        <p>Loading top departure stations...</p>
-    }
-    else if (topDepartureStations.Count == 0)
-    {
-        <p>No data found for top departure stations.</p>
-    }
-    else
-    {
-        <ol>
-            @foreach (var station in topDepartureStations)
-            {
-                <li>@station.Name</li>
-            }
-        </ol>
-    }
-
+    <div class="station-info">
+        <h2>@bikeStation.Name</h2>
+        <p>@bikeStation.Osoite</p>
+        <a href="@($"https://www.google.com/maps?q={bikeStation.Y},{bikeStation.X}")" target="_blank">View station on Google Maps</a>
+        <div class="row">
+            <div class="column">
+                <h3>Outgoing Journeys</h3>
+                <p>Total number of journeys starting from the station: @totalStarts</p>
+                <p>The average distance of a journey starting from the station: @avgDistJourneysStarted km</p>
+                <h4>Top 5 most popular return stations</h4>
+                @if (topReturnStations == null)
+                {
+                    <p>Loading top return stations...</p>
+                }
+                else if (topReturnStations.Count == 0)
+                {
+                    <p>No data found for top return stations.</p>
+                }
+                else
+                {
+                    <ol>
+                        @foreach (var station in topReturnStations)
+                        {
+                            <li>@station.Name</li>
+                        }
+                    </ol>
+                }
+            </div>
+            <div class="column">
+                <h3>Incoming Journeys</h3>
+                <p>Total number of journeys ending at the station: @totalEnded</p>
+                <p>The average distance of a journey ending at the station: @avgDistJourneysEnded km</p>
+                <h4>Top 5 most popular departure stations</h4>
+                @if (topDepartureStations == null)
+                {
+                    <p>Loading top departure stations...</p>
+                }
+                else if (topDepartureStations.Count == 0)
+                {
+                    <p>No data found for top departure stations.</p>
+                }
+                else
+                {
+                    <ol>
+                        @foreach (var station in topDepartureStations)
+                        {
+                            <li>@station.Name</li>
+                        }
+                    </ol>
+                }
+            </div>
+        </div>
+    </div>
 }
 
 @code {
 
     private BikeStation? bikeStation;
-    //private Summer21Journey? summer21Journey; is this necessary?
-
     private int? totalStarts = 0;
     private int? totalEnded = 0;
     private double? avgDistJourneysStarted = 0;
