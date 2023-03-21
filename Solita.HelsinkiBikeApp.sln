@@ -10,6 +10,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solita.HelsinkiBikeApp.Shared", "Shared\Solita.HelsinkiBikeApp.Shared.csproj", "{35606025-2EF8-42E9-ADA2-B5C86A9273FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solita.HelsinkiBikeApp.Tests", "Solita.HelsinkiBikeApp.Tests\Solita.HelsinkiBikeApp.Tests.csproj", "{580A90A8-843B-48C3-A572-353CA9E55C1B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{35606025-2EF8-42E9-ADA2-B5C86A9273FE} = {35606025-2EF8-42E9-ADA2-B5C86A9273FE}
+		{312389BE-6805-4CE0-9FBA-267077076EC8} = {312389BE-6805-4CE0-9FBA-267077076EC8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
