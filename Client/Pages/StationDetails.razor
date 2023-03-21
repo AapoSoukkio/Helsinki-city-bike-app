@@ -24,6 +24,18 @@ else
     <span>The average distance of a journey ending at the station in kilometers: @avgDistJourneysEnded</span>
     <br />
     <a href="@($"https://www.google.com/maps?q={bikeStation.Y},{bikeStation.X}")" target="_blank">View on Google Maps</a>
+    <br />
+
+    @if (topReturnStations.Count > 0)
+{
+    <h4>Top 5 return stations for journeys starting from this station:</h4>
+    <ul>
+        @foreach (var station in topReturnStations)
+        {
+            <li>@station.Name</li>
+        }
+    </ul>
+}
 
 }
 
@@ -36,6 +48,7 @@ else
     private int? totalEnded = 0;
     private double? avgDistJourneysStarted = 0;
     private double? avgDistJourneysEnded = 0;
+    private List<BikeStation> topReturnStations = new List<BikeStation>();
 
     [Parameter]
     public int ID { get; set; }
@@ -50,6 +63,7 @@ else
             totalEnded = await NumberOfJourneysEnded(ID);
             avgDistJourneysStarted = await AvgDistJourneysStarting(ID);
             avgDistJourneysEnded = await AvgDistJourneysEnding(ID);
+            await GetTopReturnStations(ID);
         }
 
     }
@@ -116,5 +130,12 @@ else
         var url = $"summer21journey/average_distance_ending_at_station?id={id}";
         double averageDistance = await Http.GetFromJsonAsync<double>(url);
         return averageDistance;
+    }
+
+    private async Task GetTopReturnStations(int id)
+    {
+        var url = $"summer21journey/top_return_stations?id={id}";
+
+        topReturnStations = await Http.GetFromJsonAsync<List<BikeStation>>(url);
     }
 }
