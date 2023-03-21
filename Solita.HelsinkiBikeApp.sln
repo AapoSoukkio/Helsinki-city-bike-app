@@ -5,14 +5,14 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solita.HelsinkiBikeApp.Server", "Server\Solita.HelsinkiBikeApp.Server.csproj", "{312389BE-6805-4CE0-9FBA-267077076EC8}"
 	ProjectSection(ProjectDependencies) = postProject
-		{44BB46DD-9884-4250-8E94-B9380015A8CA} = {44BB46DD-9884-4250-8E94-B9380015A8CA}
+		{ECE83D75-2C11-4CDE-9594-265D599C02E8} = {ECE83D75-2C11-4CDE-9594-265D599C02E8}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solita.HelsinkiBikeApp.Client", "Client\Solita.HelsinkiBikeApp.Client.csproj", "{CE61C67B-57A1-4D37-ADD8-D4D54337E313}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solita.HelsinkiBikeApp.Shared", "Shared\Solita.HelsinkiBikeApp.Shared.csproj", "{35606025-2EF8-42E9-ADA2-B5C86A9273FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solita.HelsinkiBikeApp.Tests", "Solita.HelsinkiBikeApp.Tests\Solita.HelsinkiBikeApp.Tests.csproj", "{44BB46DD-9884-4250-8E94-B9380015A8CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{ECE83D75-2C11-4CDE-9594-265D599C02E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,10 +32,10 @@ Global
 		{35606025-2EF8-42E9-ADA2-B5C86A9273FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35606025-2EF8-42E9-ADA2-B5C86A9273FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35606025-2EF8-42E9-ADA2-B5C86A9273FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44BB46DD-9884-4250-8E94-B9380015A8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44BB46DD-9884-4250-8E94-B9380015A8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44BB46DD-9884-4250-8E94-B9380015A8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44BB46DD-9884-4250-8E94-B9380015A8CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECE83D75-2C11-4CDE-9594-265D599C02E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECE83D75-2C11-4CDE-9594-265D599C02E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECE83D75-2C11-4CDE-9594-265D599C02E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECE83D75-2C11-4CDE-9594-265D599C02E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
