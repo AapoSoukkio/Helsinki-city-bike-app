@@ -65,6 +65,7 @@ To run the project, you need Visual Studio 2022 installed on your machine. Here 
 by following these instructions https://learn.microsoft.com/en-us/visualstudio/get-started/tutorial-open-project-from-repo?view=vs-2022
 
 3. Copy the SQLite database file BikeApp.db under the Server folder. 
+
 Note: Do this BEFORE you run the project for the first time or otherwise the application will create a empty database and you will not be able see any data.
 Ofcource you can always delete the empty database (it's going to create it under Server folder) and copy the database provided at step 1. Or seed the 
 database however you want but it may affect the operation of the program.
