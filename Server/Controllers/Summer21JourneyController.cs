@@ -124,5 +124,29 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
             return Ok(orderedStations);
         }
 
+        [HttpGet("top_departure_stations")]
+        public async Task<ActionResult<List<BikeStation>>> GetTopDepartureStations(int id)
+        {
+            var journeys = await _db.Summer21Journeys
+                                     .Where(j => j.ReturnStationId == id)
+                                     .GroupBy(j => j.DepartureStationId)
+                                     .Select(g => new { StationId = g.Key, Count = g.Count() })
+                                     .OrderByDescending(g => g.Count)
+                                     .Take(5)
+                                     .ToListAsync();
+
+            var stationIds = journeys.Select(j => j.StationId).ToList();
+            var stations = await _db.BikeStations
+                                    .Where(s => stationIds.Contains(s.ID))
+                                    .ToListAsync();
+
+            // Order the stations by the order of the journey count
+            var orderedStations = stationIds.Select(id => stations.First(s => s.ID == id)).ToList();
+
+            return Ok(orderedStations);
+        }
+
+
+
     }
 }

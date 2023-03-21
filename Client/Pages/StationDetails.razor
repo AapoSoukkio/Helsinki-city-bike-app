@@ -26,16 +26,43 @@ else
     <a href="@($"https://www.google.com/maps?q={bikeStation.Y},{bikeStation.X}")" target="_blank">View on Google Maps</a>
     <br />
 
-    @if (topReturnStations.Count > 0)
-{
-    <h4>Top 5 return stations for journeys starting from this station:</h4>
-    <ul>
-        @foreach (var station in topReturnStations)
-        {
-            <li>@station.Name</li>
-        }
-    </ul>
-}
+      <h3>Top 5 most popular return stations for journeys starting from the station</h3>
+    @if (topReturnStations == null)
+    {
+        <p>Loading top return stations...</p>
+    }
+    else if (topReturnStations.Count == 0)
+    {
+        <p>No data found for top return stations.</p>
+    }
+    else
+    {
+        <ol>
+            @foreach (var station in topReturnStations)
+            {
+                <li>@station.Name</li>
+            }
+        </ol>
+    }
+
+    <h3>Top 5 most popular departure stations for journeys ending at the station</h3>
+    @if (topDepartureStations == null)
+    {
+        <p>Loading top departure stations...</p>
+    }
+    else if (topDepartureStations.Count == 0)
+    {
+        <p>No data found for top departure stations.</p>
+    }
+    else
+    {
+        <ol>
+            @foreach (var station in topDepartureStations)
+            {
+                <li>@station.Name</li>
+            }
+        </ol>
+    }
 
 }
 
@@ -48,7 +75,8 @@ else
     private int? totalEnded = 0;
     private double? avgDistJourneysStarted = 0;
     private double? avgDistJourneysEnded = 0;
-    private List<BikeStation> topReturnStations = new List<BikeStation>();
+    private List<BikeStation>? topReturnStations;
+    private List<BikeStation>? topDepartureStations;
 
     [Parameter]
     public int ID { get; set; }
@@ -64,6 +92,7 @@ else
             avgDistJourneysStarted = await AvgDistJourneysStarting(ID);
             avgDistJourneysEnded = await AvgDistJourneysEnding(ID);
             await GetTopReturnStations(ID);
+            await GetTopDepartureStations(ID);
         }
 
     }
@@ -137,5 +166,12 @@ else
         var url = $"summer21journey/top_return_stations?id={id}";
 
         topReturnStations = await Http.GetFromJsonAsync<List<BikeStation>>(url);
+    }
+
+     private async Task GetTopDepartureStations(int id)
+    {
+        var url = $"summer21journey/top_departure_stations?id={id}";
+
+        topDepartureStations = await Http.GetFromJsonAsync<List<BikeStation>>(url);
     }
 }
