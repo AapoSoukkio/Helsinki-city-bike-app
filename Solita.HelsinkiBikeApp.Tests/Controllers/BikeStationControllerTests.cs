@@ -26,7 +26,7 @@ namespace Solita.HelsinkiBikeApp.Tests.Controllers
         }
 
         //  Get_ReturnsAllDataFromBikeStationTable test method verifies that the Get() method in the
-        //  BikeStationController returns all the datafrom the BikeStation table in the in-memory database
+        //  BikeStationController returns all the data from the BikeStation table in the in-memory database
         [Test]
         public async Task Get_ReturnsAllDataFromBikeStationTable()
         {
