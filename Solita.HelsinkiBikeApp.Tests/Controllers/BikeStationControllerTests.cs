@@ -25,8 +25,6 @@ namespace Solita.HelsinkiBikeApp.Tests.Controllers
             _context.SaveChanges();
         }
 
-        //  Get_ReturnsAllDataFromBikeStationTable test method verifies that the Get() method in the
-        //  BikeStationController returns all the data from the BikeStation table in the in-memory database
         [Test]
         public async Task Get_ReturnsAllDataFromBikeStationTable()
         {
@@ -42,9 +40,6 @@ namespace Solita.HelsinkiBikeApp.Tests.Controllers
             NUnit.Framework.Assert.AreEqual(2, result.Count());
         }
 
-        //The GetStations_ReturnsExpectedResults_WhenStationNameIsProvided() test method verifies that
-        //the GetStations() method in the BikeStationController returns the expected results when a search
-        //term is provided.
         [Test]
         public async Task GetStations_ReturnsExpectedResults_WhenStationNameIsProvided()
         {
