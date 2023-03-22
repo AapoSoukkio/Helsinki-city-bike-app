@@ -74,7 +74,10 @@ database however you want but it may affect the operation of the program.
 
 5. Set the Solita.HelsinkiBikeApp.Server project as the startup project (if it's not by default').
 
-6. Press F5 or click the 'Run' button to start the server and launch the application in your default web browser
+6. Press F5 or click the 'Run' button to start the server and launch the application in your default web browser.
+The application will automatically open in your default browser using the HTTPS URL https://localhost:7293. 
+If you prefer to use the HTTP URL, you can manually type in the URL http://localhost:5293 in your browser.
+
 
 Note: The size of the database file is quite large and it may take some time to download. It is recommended to have a stable 
 internet connection while downloading the file.
