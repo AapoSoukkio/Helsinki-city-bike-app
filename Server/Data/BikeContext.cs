@@ -12,7 +12,6 @@ namespace Solita.HelsinkiBikeApp.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Summer21Journey>().HasNoKey();
         }
 
         public DbSet<BikeStation> BikeStations { get; set; }

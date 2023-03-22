@@ -2,6 +2,7 @@
 {
     public class Summer21Journey
     {
+        public int ID { get; set; }
         public string? Departure { get; set; }
         public string? Return { get; set; }
         public int? DepartureStationId { get; set; }
