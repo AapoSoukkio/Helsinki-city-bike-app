@@ -41,11 +41,9 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
             }
             else
             {
-                string stationNameToUpper = char.ToUpper(stationName[0]) + stationName.Substring(1);
-
                 // Return bike stations whose names or addresses contain the search term
                 return await _db.BikeStations
-                    .Where(b => b.Name != null && b.Adress != null && (b.Name.Contains(stationName) || b.Name.Contains(stationNameToUpper)))
+                    .Where(b => b.Name != null && b.Osoite != null && (b.Name.ToLower().Contains(stationName.ToLower())))
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .Distinct()
