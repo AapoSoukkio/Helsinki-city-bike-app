@@ -28,6 +28,8 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
         [HttpGet("getjourneys")]
         public async Task<ActionResult<IEnumerable<Summer21Journey>>> GetJourneys(DateTime? departureDate = null, int pageNumber = 1, int pageSize = 100)
         {
+            //TODO Validate the incoming data
+
             // Default departure date if not provided by user
             if (!departureDate.HasValue)
             {

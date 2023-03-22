@@ -35,10 +35,8 @@
     {
         @foreach (var journey in julyJourneys.Where(j => j != null))
         {
-            // Convert meters to kilometers
             decimal coveredDistanceKm = (decimal)journey.CoveredDistance / 1000;
 
-            // Convert seconds to minutes
             decimal durationMin = (decimal)journey.Duration / 60;
 
             <tr>
