@@ -105,7 +105,7 @@ by following these instructions https://learn.microsoft.com/en-us/visualstudio/g
 
 4. Open the solution file Solita.HelsinkiBikeApp.sln in Visual Studio 2022.
 
-5. Set the Solita.HelsinkiBikeApp.Server project as the startup project (if it's not by default').
+5. Set the Solita.HelsinkiBikeApp.Server project as the startup project (if it's not by default).
 
 6. Press F5 or click the 'Run' button to start the server and launch the application in your default web browser.
   The application will automatically open in your default browser using the HTTPS URL https://localhost:7293. 
@@ -136,6 +136,20 @@ To run the tests, follow these steps:
 4. To run all the tests in the class, press "Control + R + T" or right-click on the test class and select "Run Tests".
 
 5. The test results will appear in the Test Explorer window. You can click on a test result to see more details about the test run.
+
+## Other notes
+
+This is basicly the first version of the app and can be improved in various fields like: 
+- Implementing E2E testing 
+- Host the backend or the entire application in the cloud to make it more easily accessible for review by others
+- Improving search and filtering capabilities to make it easier for user to go through large data mass
+- Adding support for data updating, posting, and deleting
+
+with that being said...
+
+I'm thrilled to have fully functional full-stack application that follows the principles of good programming practices. I'm also confident that
+the code is well-organized and maintainable. There has been some decent effort to put together this one and needless to say that I
+also learned thing or two along the way. I hope that whoever reads this will put my application to the test and possibly gives some feedback. 
 
 
 ## Helpful Links
