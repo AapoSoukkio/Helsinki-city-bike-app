@@ -54,11 +54,11 @@ was added to the journeys table, and an ID was generated for every journey using
 
 ### Database model 
 
-The three datasets for the summer of 2021 were combined into a single table for the journeys.
+The three datasets for the journeys made in summer 2021 were combined into a single table.
 
 ![Journeys Model](images/database_journeys.png)
 
-The stations data model what is used in the project
+Bicycle stations dataset modelled to a database table.
 
 ![Stations Model](images/database_bikestations.png)
 
