@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Solita.HelsinkiBikeApp.Server.Data;
+using Solita.HelsinkiBikeApp.Server.Helpers;
 using Solita.HelsinkiBikeApp.Shared;
 
 namespace Solita.HelsinkiBikeApp.Server.Controllers
@@ -29,6 +30,12 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
         public async Task<ActionResult<IEnumerable<Summer21Journey>>> GetJourneys(DateTime? departureDate = null, int pageNumber = 1, int pageSize = 100)
         {
             //TODO Validate the incoming data
+
+            string errorMessage;
+            if (!DataValidator.ValidateData(departureDate, pageNumber, pageSize, out errorMessage))
+            {
+                return BadRequest(errorMessage);
+            }
 
             // Default departure date if not provided by user
             if (!departureDate.HasValue)
