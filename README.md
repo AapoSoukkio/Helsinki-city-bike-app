@@ -17,8 +17,8 @@ This is a web application that displays data from journeys made with city bikes 
 The application allows users to view information about bike stations and journeys, including details such as departure
 and return stations, distance, and duration.
 
-The application is built using Blazor WebAssembly and consists of a client and a server. The server uses
-a SQLite database to store journey and station data.
+The application is built using Blazor WebAssembly and consists of a frontend, backend and the necessary Entity Framework class librarys.
+The backend uses a SQLite database to store journey and station data.
 
 Users can view a list of all of the journeys made in 2021 summer, as well as detailed information about individual bike
 stations,including the total number of journeys starting from or ending at the station, the average distance of
@@ -27,10 +27,41 @@ those journeys, and the top 5 most popular return and departure stations.
 
 ## Technologies Used
 
-- C# and .NET Core 6 for the server
+- C# and .NET Core 6 for the backend
 - Blazor WebAssembly for the client
 - Entity Framework Core for data access
 - SQLite for the database
+
+## About the data
+
+The journey and station data used in this project is provided by City Bike Finland. There are three datasets of journey data, each covering
+a month of the 2021 summer:
+
+- https://dev.hsl.fi/citybikes/od-trips-2021/2021-05.csv
+- https://dev.hsl.fi/citybikes/od-trips-2021/2021-06.csv
+- https://dev.hsl.fi/citybikes/od-trips-2021/2021-07.csv
+
+The dataset that provides information about Helsinki Region Transport’s (HSL) city bicycle stations is available at:
+
+- https://opendata.arcgis.com/datasets/726277c507ef4914b0aec3cbcfcbfafc_0.csv
+
+
+### Data processing/initialization
+
+The provided CSV files were imported to a SQLite database using the DB Browser tool. All the journeys that lasted for
+less than ten seconds or covered distances shorter than 10 meters were deleted from the database. A primary key column (ID)
+was added to the journeys table, and an ID was generated for every journey using DB Browser generating tool.
+
+### Database model 
+
+The three datasets for the summer of 2021 were combined into a single table for the journeys.
+
+![Journeys Model](images/database_journeys.png)
+
+The stations data model what is used in the project
+
+![Stations Model](images/database_bikestations.png)
+
 
 ## Features
 
@@ -57,35 +88,39 @@ popular return and departure stations for journeys starting from or ending at th
 
 ## How to run the project
 
-To run the project, you need Visual Studio 2022 installed on your machine. Here are the steps to run the project:
+To run the project, you need Visual Studio 2022 installed on your machine. You can download it [here](https://visualstudio.microsoft.com/vs/)
+Here are the steps to run the project:
 
-1. Download the SQLite database file to your local machine from this link: https://drive.google.com/file/d/1TctURFUU7Dm6GDwttHhvJW19gUsrdcYU/view?usp=sharing
-
-2. Clone the project from GitHub to your local machine. You can also copy the project straight to the Visual Studio 2022
+1. Clone the project from GitHub to your local machine. You can also copy the project straight to the Visual Studio 2022
 by following these instructions https://learn.microsoft.com/en-us/visualstudio/get-started/tutorial-open-project-from-repo?view=vs-2022
+
+2. Download the SQLite database file to your local machine from this link: https://drive.google.com/file/d/1TctURFUU7Dm6GDwttHhvJW19gUsrdcYU/view?usp=sharing
 
 3. Copy the SQLite database file BikeApp.db under the Server folder. 
 
-Note: Do this BEFORE you run the project for the first time or otherwise the application will create a empty database and you will not be able see any data.
-Ofcource you can always delete the empty database (it's going to create it under Server folder) and copy the database provided at step 1. Or seed the 
-database however you want but it may affect the operation of the program.
+  Note: Do this BEFORE you run the project for the first time or otherwise the application will create a empty database and you will not be able see any data.
+  Ofcource you can always delete the empty database (it's going to create it under Server folder) and copy the database provided at step 1. Or seed the 
+  database however you want but it may affect the operation of the program.
 
 4. Open the solution file Solita.HelsinkiBikeApp.sln in Visual Studio 2022.
 
 5. Set the Solita.HelsinkiBikeApp.Server project as the startup project (if it's not by default').
 
 6. Press F5 or click the 'Run' button to start the server and launch the application in your default web browser.
-The application will automatically open in your default browser using the HTTPS URL https://localhost:7293. 
-If you prefer to use the HTTP URL, you can manually type in the URL http://localhost:5293 in your browser.
+  The application will automatically open in your default browser using the HTTPS URL https://localhost:7293. 
+  If you prefer to use the HTTP URL, you can manually type in the URL http://localhost:5293 in your browser.
 
 
-Note: The size of the database file is quite large and it may take some time to download. It is recommended to have a stable 
-internet connection while downloading the file.
+  Note: The size of the database file is quite large and it may take some time to download. It is recommended to have a stable 
+  internet connection while downloading the file. If you encounter problems when trying to load the database, please try
+  with a different browser. Downloading the database has been tested successfully with Google Chrome and Microsoft Edge.
+  It is still possible that due to your browser settings, loading the database will cause difficulties. In this case, I ask you to contact
+  me immediately and I will deliver the database to you by another route. My contact information can be found under my Github profile.
 
 
 ## Tests
 
-This project includes unit tests for the server-side code. The tests use the NUnit testing framework.
+This project includes unit tests for the backend-side code. The tests use the NUnit testing framework.
 
 ### How to run the tests
 
