@@ -89,6 +89,7 @@ popular return and departure stations for journeys starting from or ending at th
 ## How to run the project
 
 To run the project, you need Visual Studio 2022 installed on your machine. You can download it [here](https://visualstudio.microsoft.com/vs/)
+
 Here are the steps to run the project:
 
 1. Clone the project from GitHub to your local machine. You can also copy the project straight to the Visual Studio 2022
