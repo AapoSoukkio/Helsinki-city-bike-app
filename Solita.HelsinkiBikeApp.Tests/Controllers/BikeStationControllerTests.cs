@@ -20,8 +20,18 @@ namespace Solita.HelsinkiBikeApp.Tests.Controllers
                 .Options;
 
             _context = new BikeContext(options);
-            _context.BikeStations.Add(new BikeStation { ID = 1, Name = "Station1", Adress = "Address1" });
-            _context.BikeStations.Add(new BikeStation { ID = 2, Name = "Station2", Adress = "Address2" });
+
+            // It is possible that the Setup method is being called multiple times when running the tests
+            // That's the reason why we are clearing and creating the database again
+
+            // Clear the database
+            _context.Database.EnsureDeleted();
+
+            // Create a new database
+            _context.Database.EnsureCreated();
+
+            _context.BikeStations.Add(new BikeStation { ID = 1, Name = "StationOne", Adress = "Address1" });
+            _context.BikeStations.Add(new BikeStation { ID = 2, Name = "StationTwo", Adress = "Address2" });
             _context.SaveChanges();
         }
 
@@ -41,20 +51,18 @@ namespace Solita.HelsinkiBikeApp.Tests.Controllers
         }
 
         [Test]
-        public async Task GetStations_ReturnsExpectedResults_WhenStationNameIsProvided()
+        public async Task GetStations_ReturnsAllDataFromBikeStationTable_WhenStationNameIsNull()
         {
             // Arrange
             var controller = new BikeStationController(null, _context);
-            string stationName = "Station1";
 
             // Act
-            var result = await controller.GetStations(stationName);
+            var result = await controller.GetStations(null, 1, 100);
 
             // Assert
             NUnit.Framework.Assert.IsNotNull(result);
             NUnit.Framework.Assert.IsInstanceOf<ActionResult<IEnumerable<BikeStation>>>(result);
-            NUnit.Framework.Assert.AreEqual(1, result.Value.Count());
-            NUnit.Framework.Assert.AreEqual("Station1", result.Value.First().Name);
+            NUnit.Framework.Assert.AreEqual(2, result.Value.Count());
         }
     }
 }

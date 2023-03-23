@@ -32,7 +32,7 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
             //TODO Validate the incoming data
 
             string errorMessage;
-            if (!DataValidator.ValidateData(departureDate, pageNumber, pageSize, out errorMessage))
+            if (!DataValidator.ValidateDataJourneysData(departureDate, pageNumber, pageSize, out errorMessage))
             {
                 return BadRequest(errorMessage);
             }

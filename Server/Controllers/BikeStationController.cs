@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Solita.HelsinkiBikeApp.Server.Data;
+using Solita.HelsinkiBikeApp.Server.Helpers;
 using Solita.HelsinkiBikeApp.Shared;
 
 namespace Solita.HelsinkiBikeApp.Server.Controllers
@@ -29,6 +30,12 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
         [HttpGet("stations")]
         public async Task<ActionResult<IEnumerable<BikeStation>>> GetStations(string? stationName = null, int pageNumber = 1, int pageSize = 100)
         {
+            string errorMessage;
+            if (!DataValidator.ValidateBikeStationData(stationName, pageNumber, pageSize, out errorMessage))
+            {
+                return BadRequest(errorMessage);
+            }
+
             if (string.IsNullOrWhiteSpace(stationName))
             {
                 // If stationName is null, empty or contains only white space, return all bike stations
