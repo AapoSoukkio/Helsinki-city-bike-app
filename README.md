@@ -99,7 +99,7 @@ by following these instructions https://learn.microsoft.com/en-us/visualstudio/g
 
 3. Copy the SQLite database file BikeApp.db under the Server folder. 
 
-  Note: Do this BEFORE you run the project for the first time or otherwise the application will create a empty database and you will not be able see any data.
+- Note: Do this BEFORE you run the project for the first time or otherwise the application will create a empty database and you will not be able see any data.
   Ofcource you can always delete the empty database (it's going to create it under Server folder) and copy the database provided at step 1. Or seed the 
   database however you want but it may affect the operation of the program.
 
@@ -112,7 +112,7 @@ by following these instructions https://learn.microsoft.com/en-us/visualstudio/g
   If you prefer to use the HTTP URL, you can manually type in the URL http://localhost:5293 in your browser.
 
 
-  Note: The size of the database file is quite large and it may take some time to download. It is recommended to have a stable 
+- Note: The size of the database file is quite large and it may take some time to download. It is recommended to have a stable 
   internet connection while downloading the file. If you encounter problems when trying to load the database, please try
   with a different browser. Downloading the database has been tested successfully with Google Chrome and Microsoft Edge.
   It is still possible that due to your browser settings, loading the database will cause difficulties. In this case, I ask you to contact
