@@ -97,7 +97,8 @@ by following these instructions https://learn.microsoft.com/en-us/visualstudio/g
 
 2. Download the SQLite database file to your local machine from this link: https://drive.google.com/file/d/1TctURFUU7Dm6GDwttHhvJW19gUsrdcYU/view?usp=sharing
 
-3. Copy the SQLite database file BikeApp.db under the Server folder. 
+3. Copy the SQLite database file BikeApp.db under the project Server folder. Make sure that the database file name is BikeApp. If you download the database
+more than once it could be also something like BikeApp(1) or BikeApp(2). The application is configured to find only database with a exactly right name.
 
 - Note: Do this BEFORE you run the project for the first time or otherwise the application will create a empty database and you will not be able see any data.
   Ofcource you can always delete the empty database (it's going to create it under Server folder) and copy the database provided at step 1. Or seed the 
@@ -144,6 +145,7 @@ This is basicly the first version of the app and can be improved in various fiel
 - Host the backend or the entire application in the cloud to make it more easily accessible for review by others
 - Improving search and filtering capabilities to make it easier for user to go through large data mass
 - Adding support for data updating, posting, and deleting
+- Could be more scalable for mobile devices
 
 with that being said...
 
