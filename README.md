@@ -101,7 +101,7 @@ by following these instructions https://learn.microsoft.com/en-us/visualstudio/g
 more than once it could be also something like BikeApp(1) or BikeApp(2). The application is configured to find only database with a exactly right name.
 
 - Note: Do this BEFORE you run the project for the first time or otherwise the application will create a empty database and you will not be able see any data.
-  Ofcource you can always delete the empty database (it's going to create it under Server folder) and copy the database provided at step 1. Or seed the 
+  Ofcource you can always delete the empty database (it's going to create it under Server folder) and copy the database provided at step 2. Or seed the 
   database however you want but it may affect the operation of the program.
 
 4. Open the solution file Solita.HelsinkiBikeApp.sln in Visual Studio 2022.
