@@ -5,51 +5,60 @@
 
 <h1>July Journeys</h1>
 
-<div class="search">
-    <label for="date">Search by date</label>
-    <input type="date" id="date" name="date" min="2021-07-01" max="2021-07-31" @bind-value="departureDate" />   
-    <button type="button" class="btn btn-primary" @onclick="Search">Search</button>
-</div>
+@if(julyJourneys == null)
+{
+    <p>Loading journeys from June...</p>
+    <p>Take it easy, we are almost there...</p>
+}
+else
+{
+    <div class="search">
+        <label for="date">Search by date</label>
+        <input type="date" id="date" name="date" min="2021-07-01" max="2021-07-31" @bind-value="departureDate" />   
+        <button type="button" class="btn btn-primary" @onclick="Search">Search</button>
+    </div>
 
-<div class="pagination">
-    <button class="btn btn-primary" disabled="@disablePrevious" @onclick="() => LoadPage(currentPage - 1, previous, departureDate)">
-        <span class="btn-text">Previous</span> 
-        <span class="small-text">100 rows</span>
-    </button>
-    <button class="btn btn-primary" @onclick="() => LoadPage(currentPage + 1, next, departureDate)">
-        <span class="btn-text">Next</span> 
-        <span class="small-text">100 rows</span>
-    </button>
-</div>
+    <div class="pagination">
+        <button class="btn btn-primary" disabled="@disablePrevious" @onclick="() => LoadPage(currentPage - 1, previous, departureDate)">
+            <span class="btn-text">Previous</span> 
+            <span class="small-text">100 rows</span>
+        </button>
+        <button class="btn btn-primary" @onclick="() => LoadPage(currentPage + 1, next, departureDate)">
+            <span class="btn-text">Next</span> 
+            <span class="small-text">100 rows</span>
+        </button>
+    </div>
 
-<Table>
-    <tr>
-        <th>Departure</th>
-        <th>Return</th>
-        <th>Departure Station Name</th>
-        <th>Return Station Name</th>
-        <th>Covered Distance (km)</th>
-        <th>Duration (min)</th>
-    </tr>
-    @if (julyJourneys != null)
-    {
-        @foreach (var journey in julyJourneys.Where(j => j != null))
+    <Table>
+        <tr>
+            <th>Departure</th>
+            <th>Return</th>
+            <th>Departure Station Name</th>
+            <th>Return Station Name</th>
+            <th>Covered Distance (km)</th>
+            <th>Duration (min)</th>
+        </tr>
+        @if (julyJourneys != null)
         {
-            decimal coveredDistanceKm = (decimal)journey.CoveredDistance / 1000;
+            @foreach (var journey in julyJourneys.Where(j => j != null))
+            {
+                decimal coveredDistanceKm = (decimal)journey.CoveredDistance / 1000;
 
-            decimal durationMin = (decimal)journey.Duration / 60;
+                decimal durationMin = (decimal)journey.Duration / 60;
 
-            <tr>
-                <td>@journey.Departure</td>
-                <td>@journey.Return</td>
-                <td>@journey.DepartureStationName</td>
-                <td>@journey.ReturnStationName</td>
-                <td>@String.Format("{0:N1}", coveredDistanceKm)</td>
-                <td>@String.Format("{0:N1}", durationMin)</td>
-            </tr>
+                <tr>
+                    <td>@journey.Departure</td>
+                    <td>@journey.Return</td>
+                    <td>@journey.DepartureStationName</td>
+                    <td>@journey.ReturnStationName</td>
+                    <td>@String.Format("{0:N1}", coveredDistanceKm)</td>
+                    <td>@String.Format("{0:N1}", durationMin)</td>
+                </tr>
+            }
         }
-    }
-</Table>
+    </Table>
+}
+
 
 @code {
   private Summer21Journey[]? julyJourneys;
@@ -97,8 +106,8 @@
 
         if (julyJourneys != null && julyJourneys.Any())
         {
-            var totalRecords = 800000; //TODO this is just estimate number of the rows on database --> Get the real number from backend
-            totalPages = (int)Math.Ceiling((decimal)totalRecords / pageSize);
+            var totalRecordsEstimate = 800000; 
+            totalPages = (int)Math.Ceiling((decimal)totalRecordsEstimate / pageSize);
         }
         else
         {

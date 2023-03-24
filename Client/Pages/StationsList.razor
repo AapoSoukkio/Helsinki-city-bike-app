@@ -7,7 +7,7 @@
 
 <div class="search">
     <label for="date">Search by station name</label>
-    <input type="text" id="station" name="station" @bind-value="stationName" />   
+    <input type="text" id="station" name="station" @bind-value="stationName" @onkeydown="SearchOnEnter" />   
     <button type="button" class="btn btn-primary" @onclick="Search">Search</button>
 </div>
 
@@ -30,7 +30,7 @@
     </tr>
     @if (bikeStations != null)
     {
-        @foreach (var station in bikeStations.Where(j => j != null)) //Note what is happening here
+        @foreach (var station in bikeStations.Where(j => j != null)) 
         {
             <tr>
                 <td>@station.Name</td>
@@ -92,8 +92,8 @@
 
         if (bikeStations != null && bikeStations.Any())
         {
-            var totalRecords = 800000; //TODO this is just estimate number of the rows on database --> Get the real number from backend
-            totalPages = (int)Math.Ceiling((decimal)totalRecords / pageSize);
+            var totalRecordsEstimate = 800000; 
+            totalPages = (int)Math.Ceiling((decimal)totalRecordsEstimate / pageSize);
         }
         else
         {
@@ -105,5 +105,14 @@
     {
         currentPage = 1;
         await LoadPage(currentPage, next);
+    }
+
+    private async Task SearchOnEnter(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter")
+        {
+            currentPage = 1;
+            await LoadPage(currentPage, next);
+        }
     }
 }
