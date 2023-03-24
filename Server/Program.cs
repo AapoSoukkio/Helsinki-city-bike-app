@@ -22,22 +22,13 @@ builder.Services.AddDbContext<BikeContext>(options =>
 
 var app = builder.Build();
 
-// seed the db
+// seed the db/check if exists
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
     SeedData.Initialize(services);
 }
-
-
-//NO need for this at least yet
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
-
-//    SeedData.Initialize(services);
-//}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

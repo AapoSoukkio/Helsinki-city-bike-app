@@ -26,7 +26,6 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
             return await _db.BikeStations.ToListAsync();
         }
 
-
         [HttpGet("stations")]
         public async Task<ActionResult<IEnumerable<BikeStation>>> GetStations(string? stationName = null, int pageNumber = 1, int pageSize = 100)
         {

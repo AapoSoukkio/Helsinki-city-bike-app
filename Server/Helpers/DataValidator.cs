@@ -1,5 +1,7 @@
 ﻿namespace Solita.HelsinkiBikeApp.Server.Helpers
 {
+    //This is example how we can easily make app more secure by validating ingoming data
+    //However this class does not cover all cases by any means
     public class DataValidator
     {
         public static bool ValidateDataJourneysData(DateTime? departureDate, int pageNumber, int pageSize, out string errorMessage)

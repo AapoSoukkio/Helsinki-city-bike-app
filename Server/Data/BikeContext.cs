@@ -12,6 +12,7 @@ namespace Solita.HelsinkiBikeApp.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Here we could do some configuration to table models like say HasNoKey(); etc...
         }
 
         public DbSet<BikeStation> BikeStations { get; set; }

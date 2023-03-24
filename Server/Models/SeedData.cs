@@ -23,6 +23,7 @@ namespace Solita.HelsinkiBikeApp.Server.Models
                 {
                     return;   // DB has been seeded
                               // To re-seed the db: delete the existing *.db file and let the app create a new one
+                              // In this case we dont have any seed data below so it will create empty database
                 }
 
                 context.SaveChanges();

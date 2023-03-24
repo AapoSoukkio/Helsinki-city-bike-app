@@ -152,6 +152,5 @@ namespace Solita.HelsinkiBikeApp.Server.Controllers
 
             return Ok(orderedStations);
         }
-
     }
 }

@@ -94,7 +94,6 @@ else
             await GetTopReturnStations(ID);
             await GetTopDepartureStations(ID);
         }
-
     }
 
     //Get the total number of journeys started from station
@@ -168,7 +167,7 @@ else
         topReturnStations = await Http.GetFromJsonAsync<List<BikeStation>>(url);
     }
 
-     private async Task GetTopDepartureStations(int id)
+    private async Task GetTopDepartureStations(int id)
     {
         var url = $"summer21journey/top_departure_stations?id={id}";
 

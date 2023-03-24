@@ -14,17 +14,17 @@ else
 {
     <div class="search">
         <label for="date">Search by date</label>
-        <input type="date" id="date" name="date" min="2021-05-01" max="2021-05-31" @bind-value="departureDate" />   
+        <input type="date" id="date" name="date" min="2021-05-01" max="2021-05-31" @bind-value="departureDate" />
         <button type="button" class="btn btn-primary" @onclick="Search">Search</button>
     </div>
 
     <div class="pagination">
         <button class="btn btn-primary" disabled="@disablePrevious" @onclick="() => LoadPage(currentPage - 1, previous, departureDate)">
-            <span class="btn-text">Previous</span> 
+            <span class="btn-text">Previous</span>
             <span class="small-text">100 rows</span>
         </button>
         <button class="btn btn-primary" @onclick="() => LoadPage(currentPage + 1, next, departureDate)">
-            <span class="btn-text">Next</span> 
+            <span class="btn-text">Next</span>
             <span class="small-text">100 rows</span>
         </button>
     </div>
@@ -43,7 +43,6 @@ else
             @foreach (var journey in mayJourneys.Where(j => j != null))
             {
                 decimal coveredDistanceKm = (decimal)journey.CoveredDistance / 1000;
-
                 decimal durationMin = (decimal)journey.Duration / 60;
 
                 <tr>
@@ -71,7 +70,6 @@ else
     private DateTime? departureDate;
 
     protected override async Task OnInitializedAsync()
-
     {
         departureDate = new DateTime(2021, 5, 31);
         await LoadPage(currentPage, next, departureDate);
@@ -106,7 +104,7 @@ else
 
         if (mayJourneys != null && mayJourneys.Any())
         {
-            var totalRecordsEstimate = 800000; 
+            var totalRecordsEstimate = 800000;
             totalPages = (int)Math.Ceiling((decimal)totalRecordsEstimate / pageSize);
         }
         else
@@ -115,7 +113,7 @@ else
         }
     }
 
-        private async Task Search()
+    private async Task Search()
     {
         currentPage = 1;
         await LoadPage(currentPage, next, departureDate);

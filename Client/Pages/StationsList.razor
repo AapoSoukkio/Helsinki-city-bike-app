@@ -5,46 +5,55 @@
 
 <h1>Bike stations</h1>
 
-<div class="search">
-    <label for="date">Search by station name</label>
-    <input type="text" id="station" name="station" @bind-value="stationName" @onkeydown="SearchOnEnter" />   
-    <button type="button" class="btn btn-primary" @onclick="Search">Search</button>
-</div>
+@if (bikeStations == null)
+{
+    <p>Loading bikestations...</p>
+    <p>This is not going to take long</p>
+}
+else
+{
+    <div class="search">
+        <label for="date">Search by station name</label>
+        <input type="text" id="station" name="station" @bind-value="stationName" @onkeydown="SearchOnEnter" />
+        <button type="button" class="btn btn-primary" @onclick="Search">Search</button>
+    </div>
 
-<div class="pagination">
-    <button class="btn btn-primary" disabled="@disablePrevious" @onclick="() => LoadPage(currentPage - 1, previous)">
-        <span class="btn-text">Previous</span> 
-        <span class="small-text">100 rows</span>
-    </button>
-    <button class="btn btn-primary" @onclick="() => LoadPage(currentPage + 1, next)">
-        <span class="btn-text">Next</span> 
-        <span class="small-text">100 rows</span>
-    </button>
-</div>
+    <div class="pagination">
+        <button class="btn btn-primary" disabled="@disablePrevious" @onclick="() => LoadPage(currentPage - 1, previous)">
+            <span class="btn-text">Previous</span>
+            <span class="small-text">100 rows</span>
+        </button>
+        <button class="btn btn-primary" @onclick="() => LoadPage(currentPage + 1, next)">
+            <span class="btn-text">Next</span>
+            <span class="small-text">100 rows</span>
+        </button>
+    </div>
 
-<Table>
-    <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Details</th>
-    </tr>
-    @if (bikeStations != null)
-    {
-        @foreach (var station in bikeStations.Where(j => j != null)) 
+    <Table>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Details</th>
+        </tr>
+        @if (bikeStations != null)
         {
-            <tr>
-                <td>@station.Name</td>
-                <td>@station.Osoite</td>
-                <td><a href=@($"/station/details/{station.ID}")>Station details and stats</a></td>
-            </tr>
+            @foreach (var station in bikeStations.Where(j => j != null))
+            {
+                <tr>
+                    <td>@station.Name</td>
+                    <td>@station.Osoite</td>
+                    <td><a href=@($"/station/details/{station.ID}")>Station details and stats</a></td>
+                </tr>
+            }
         }
-    }
-</Table>
+    </Table>
+}
+
 
 @if (bikeStations != null && bikeStations.Length < 1)
-    {
-        <h2>No matches to your search</h2>
-    }
+{
+    <h2>No matches to your search</h2>
+}
 
 @code {
     private BikeStation[]? bikeStations;
@@ -57,7 +66,6 @@
     private string? stationName;
 
     protected override async Task OnInitializedAsync()
-
     {
         await LoadPage(currentPage, next);
     }
@@ -92,7 +100,7 @@
 
         if (bikeStations != null && bikeStations.Any())
         {
-            var totalRecordsEstimate = 800000; 
+            var totalRecordsEstimate = 800000;
             totalPages = (int)Math.Ceiling((decimal)totalRecordsEstimate / pageSize);
         }
         else
@@ -101,7 +109,7 @@
         }
     }
 
-        private async Task Search()
+    private async Task Search()
     {
         currentPage = 1;
         await LoadPage(currentPage, next);

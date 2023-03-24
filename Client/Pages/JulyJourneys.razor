@@ -5,7 +5,7 @@
 
 <h1>July Journeys</h1>
 
-@if(julyJourneys == null)
+@if (julyJourneys == null)
 {
     <p>Loading journeys from June...</p>
     <p>Take it easy, we are almost there...</p>
@@ -14,17 +14,17 @@ else
 {
     <div class="search">
         <label for="date">Search by date</label>
-        <input type="date" id="date" name="date" min="2021-07-01" max="2021-07-31" @bind-value="departureDate" />   
+        <input type="date" id="date" name="date" min="2021-07-01" max="2021-07-31" @bind-value="departureDate" />
         <button type="button" class="btn btn-primary" @onclick="Search">Search</button>
     </div>
 
     <div class="pagination">
         <button class="btn btn-primary" disabled="@disablePrevious" @onclick="() => LoadPage(currentPage - 1, previous, departureDate)">
-            <span class="btn-text">Previous</span> 
+            <span class="btn-text">Previous</span>
             <span class="small-text">100 rows</span>
         </button>
         <button class="btn btn-primary" @onclick="() => LoadPage(currentPage + 1, next, departureDate)">
-            <span class="btn-text">Next</span> 
+            <span class="btn-text">Next</span>
             <span class="small-text">100 rows</span>
         </button>
     </div>
@@ -43,7 +43,6 @@ else
             @foreach (var journey in julyJourneys.Where(j => j != null))
             {
                 decimal coveredDistanceKm = (decimal)journey.CoveredDistance / 1000;
-
                 decimal durationMin = (decimal)journey.Duration / 60;
 
                 <tr>
@@ -61,7 +60,7 @@ else
 
 
 @code {
-  private Summer21Journey[]? julyJourneys;
+    private Summer21Journey[]? julyJourneys;
     private int currentPage = 1;
     private string next = "next";
     private string previous = "previous";
@@ -71,7 +70,6 @@ else
     private DateTime? departureDate;
 
     protected override async Task OnInitializedAsync()
-
     {
         departureDate = new DateTime(2021, 7, 31);
         await LoadPage(currentPage, next, departureDate);
@@ -106,7 +104,7 @@ else
 
         if (julyJourneys != null && julyJourneys.Any())
         {
-            var totalRecordsEstimate = 800000; 
+            var totalRecordsEstimate = 800000;
             totalPages = (int)Math.Ceiling((decimal)totalRecordsEstimate / pageSize);
         }
         else
@@ -115,7 +113,7 @@ else
         }
     }
 
-        private async Task Search()
+    private async Task Search()
     {
         currentPage = 1;
         await LoadPage(currentPage, next, departureDate);
